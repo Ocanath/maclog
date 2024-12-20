@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Path to store the unique MAC addresses log
-MAC_LOG_FILE="/tmp/mac_addresses.log"
+MAC_LOG_FILE="./mac_addresses.log"
 # Path to temporarily store the current list of MAC addresses
-CURRENT_MACS_FILE="/tmp/current_macs.txt"
+CURRENT_MACS_FILE="./current_macs.txt"
 # Path to temporarily store the last seen list of MAC addresses
-LAST_SEEN_MACS_FILE="/tmp/last_seen_macs.txt"
+LAST_SEEN_MACS_FILE="./last_seen_macs.txt"
 
 # Network interface to scan (change to your network interface, e.g., eth0, wlan0)
-INTERFACE="eth0"  # Change this to your local network interface (e.g., eth0, wlan0)
+INTERFACE="enp4s0"  # Change this to your local network interface (e.g., eth0, wlan0)
 
 # Function to get the current MAC addresses from the network
 get_current_mac_addresses() {
@@ -64,8 +64,9 @@ log_absence() {
 
 # Main loop: Log new MAC addresses (Presence) and check for absences every minute
 while true; do
+	# echo "Scanning"
     log_presence
     log_absence
-    echo "Waiting 60 seconds before the next scan..."
-    sleep 60  # Sleep for 60 seconds (1 minute)
+    # echo "Waiting 10 seconds before the next scan..."
+    sleep 10  # Sleep for 60 seconds (1 minute)
 done
